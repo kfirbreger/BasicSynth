@@ -33,13 +33,13 @@ nonisolated enum Waveform: String, CaseIterable, Sendable {
             return (2.0 / Float.pi) * sample
         case .square:
             var sample: Float = 0
-            for i in stride(from: 1, to: harmonics, by: 2) {
+            for i in stride(from: 1, to: harmonics + 1, by: 2) {
                 sample += sin(Float(i) * phase) / Float(i)
             }
             return (4.0 / Float.pi) * sample
         case .triangle:
             var sample: Float = 0
-            for i in stride(from: 1, to: harmonics, by: 2) {
+            for i in stride(from: 1, to: harmonics + 1, by: 2) {
                 sample += powf(-1.0, (Float(i) - 1.0) / 2.0) * sin(Float(i) * phase) / Float((i * i))
             }
             return (8.0 / Waveform.piSq) * sample
